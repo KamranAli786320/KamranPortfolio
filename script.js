@@ -36,6 +36,26 @@ document.addEventListener('DOMContentLoaded', function () {
             if (mobileMenu) mobileMenu.classList.remove('active');
         }
     }
+    // FIX for "View My Work" button (without nav-link class)
+const viewWorkBtn = document.querySelector('a[href="#portfolio"]');
+const section = document.querySelectorAll(".section");
+
+if (viewWorkBtn) {
+    viewWorkBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // hide all sections
+        sections.forEach(section => {
+            section.classList.remove("active");
+        });
+
+        // show portfolio section
+        document.getElementById("portfolio").classList.add("active");
+
+        // scroll to top (optional but smooth feel)
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
 
     // Wire up ALL .nav-link clicks (includes the "View My Work" button since it has nav-link class)
     navLinks.forEach(link => {
