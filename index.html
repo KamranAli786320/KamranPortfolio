@@ -57,10 +57,10 @@
                     <h2>AI/ML Engineer</h2>
                     <p>Building intelligent systems with cutting-edge AI technologies. Specializing in LLMs, Computer Vision, and Data Analytics.</p>
                     <div class="home-btns">
-                        <a href="#portfolio" class="btn primary">
-                            <span>View My Work</span>
-                            <div class="btn-hover-effect"></div>
-                        </a>
+                      <a href="#portfolio" class="btn primary" onclick="document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' }); return false;">
+                           <span>View My Work</span>
+                      <div class="btn-hover-effect"></div>
+                      </a>
                         <a href="resume.pdf" class="btn secondary" download="Kamran_Ali_Resume.pdf">
                             <span>Download CV</span>
                             <div class="btn-hover-effect"></div>
@@ -188,211 +188,141 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
-        <div class="container">
-            <h2 class="section-title">Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/heart_disease.jpg" alt="Heart Disease Prediction">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="heart-disease">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Heart-Disease-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Heart Disease Prediction</h3>
-                        <p>Classification model to predict heart disease risk factors</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Classification</span>
-                            <span class="tag">Healthcare</span>
-                        </div>
-                    </div>
-                </div>
-<!-- ==============================================================                 -->
- <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/RA.jpg" alt="Marketing Research Assistant">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="heart-disease">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Marketing-Research-Agent" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Marketing Research Assistant</h3>
-                        <p>Tell about the Market updates on specifice things</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Market Analysis</span>
-                            <span class="tag">Chat</span>
-                        </div>
-                    </div>
-                </div>
-<!-- ============================================= -->
- <!-- ==============================================================                 -->
- <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/images.jpg" alt="Simple Rag System">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="heart-disease">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Rag-System-" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Rag System</h3>
-                        <p>Simple RAG for Practice</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Market Analysis</span>
-                            <span class="tag">Chat</span>
-                        </div>
-                    </div>
-                </div>
-<!-- ============================================= -->
-<div class="portfolio-item">
-    <div class="portfolio-img">
-        <img src="images/story_bible.jpg" alt="Private AI Story Writing Engine">
-        <div class="portfolio-overlay">
-            <div class="portfolio-links">
-                <a href="#analytics" class="portfolio-link" data-project="story-bible">
-                    <i class="fas fa-chart-bar"></i>
-                </a>
-                <a href="https://github.com/KamranAli786320/ai-story-bible" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-info">
-        <h3>Private AI Story Writing Engine</h3>
-        <p>Local & private AI assistant with intelligent context management and automated Story Bible generation.</p>
-        <div class="portfolio-tags">
-            <span class="tag">LLM</span>
-            <span class="tag">Ollama</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">Next.js</span>
-        </div>
-    </div>
-</div>
-<div class="portfolio-item">
-    <div class="portfolio-img">
-        <img src="images/jarvis_assistant.jpg" alt="Voice-Controlled JARVIS Assistant">
-        <div class="portfolio-overlay">
-            <div class="portfolio-links">
-                <a href="#analytics" class="portfolio-link" data-project="jarvis">
-                    <i class="fas fa-chart-bar"></i>
-                </a>
-                <a href="https://github.com/KamranAli786320/jarvis-System" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-info">
-        <h3>Voice-Controlled JARVIS</h3>
-        <p>A local AI assistant that executes system tasks, web automation, and app control via voice commands using Ollama.</p>
-        <div class="portfolio-tags">
-            <span class="tag">Voice AI</span>
-            <span class="tag">Python</span>
-            <span class="tag">Automation</span>
-            <span class="tag">Next.js</span>
-        </div>
-    </div>
-</div>
-                <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/Iris_Flowers.jpg" alt="Iris Flower Classification">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="iris">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Iris-Flower-Manipulation.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Iris Flower Classification</h3>
-                        <p>Multi-class classification model for iris flower species</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Classification</span>
-                            <span class="tag">Botany</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/phishing_detection.jpg" alt="Phishing Detection">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="phishing">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Phinshing-Detection-By-passiny/tree/main" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>Phishing Detection</h3>
-                        <p>ML model to detect phishing websites</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Classification</span>
-                            <span class="tag">Security</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-img">
-                        <img src="images/cosmatic_analysis.jpg" alt="E-Commerce Cosmetic Analysis">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-links">
-                                <a href="#analytics" class="portfolio-link" data-project="ecommerce">
-                                    <i class="fas fa-chart-bar"></i>
-                                </a>
-                                <a href="https://github.com/KamranAli786320/Eccomerce-Cosmetics-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>E-Commerce Cosmetic Analysis</h3>
-                        <p>Data analysis for e-commerce cosmetics</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Data Analysis</span>
-                            <span class="tag">E-commerce</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="portfolio" class="section">
+    <div class="container">
+        <h2 class="section-title">Featured AI & Machine Learning Projects</h2>
+        <div class="portfolio-grid">
 
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/story_bible.jpg" alt="AI Story Writing Engine">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/ai-story-bible" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Private AI Story Engine</h3>
+                    <p>Local AI assistant with intelligent context management and automated Story Bible generation.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Ollama</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Next.js</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/jarvis_assistant.jpg" alt="JARVIS Assistant">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/jarvis-System" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Voice-Controlled JARVIS</h3>
+                    <p>Voice-activated AI assistant for system automation, web tasks, and app control using Ollama.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Voice AI</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/RA.jpg" alt="Marketing Research Assistant">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/Marketing-Research-Agent" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Marketing Research Agent</h3>
+                    <p>RAG-based agent that provides real-time market updates and strategic insights.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">RAG</span>
+                        <span class="tag">Agentic AI</span>
+                        <span class="tag">LLM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/heart_disease.jpg" alt="Heart Disease Prediction">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/Heart-Disease-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Heart Disease Prediction</h3>
+                    <p>Advanced classification model to identify cardiovascular risk factors using patient data.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">Healthcare</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/phishing_detection.jpg" alt="Phishing Detection">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/Phinshing-Detection-By-passiny/tree/main" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Phishing Detection System</h3>
+                    <p>Machine Learning model focused on cybersecurity to identify and flag malicious URLs.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <img src="images/cosmatic_analysis.jpg" alt="Cosmetic Analysis">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-links">
+                            <a href="https://github.com/KamranAli786320/Eccomerce-Cosmetics-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>E-Commerce Analytics</h3>
+                    <p>Predictive analysis and consumer behavior modeling for the cosmetics industry.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Data Analytics</span>
+                        <span class="tag">E-commerce</span>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div> </section>
     <!-- Services Section -->
    <section id="services" class="section">
     <div class="container">
