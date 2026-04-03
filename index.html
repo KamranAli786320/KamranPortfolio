@@ -47,484 +47,35 @@
 
     <!-- Home Section -->
     <section id="home" class="section active">
-        <!-- Neural network animated canvas -->
-        <canvas id="neuralCanvas"></canvas>
-
         <div class="container">
             <div class="home-content">
                 <div class="home-text">
-                    <!-- Badge -->
-                    <div class="hero-badge">
-                        <span class="badge-dot"></span>
-                        <span>Available for Opportunities</span>
-                    </div>
-
                     <div class="typing-container">
                         <h1 class="typing-text">Kamran Ali</h1>
                     </div>
-
-                    <!-- Animated role switcher -->
-                    <div class="role-switcher">
-                        <span class="role-prefix">I build&nbsp;</span>
-                        <div class="role-words">
-                            <span class="role-word active">LLM Systems</span>
-                            <span class="role-word">RAG Pipelines</span>
-                            <span class="role-word">AI Agents</span>
-                            <span class="role-word">Computer Vision</span>
-                        </div>
-                    </div>
-
-                    <p class="hero-desc">AI/ML Engineer specializing in building production-grade intelligent systems — from fine-tuned LLMs and RAG architectures to real-time computer vision pipelines.</p>
-
-                    <!-- Quick contact bar -->
-                    <div class="hero-contact-bar">
-                        <a href="mailto:kamranali0844@gmail.com" class="hc-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>kamranali0844@gmail.com</span>
-                        </a>
-                        <a href="tel:+923020813289" class="hc-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+92 302 0813289</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener noreferrer" class="hc-item">
-                            <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener noreferrer" class="hc-item">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-
+                    <h2>AI/ML Engineer</h2>
+                    <p>Building intelligent systems with cutting-edge AI technologies. Specializing in LLMs, Computer Vision, and Data Analytics.</p>
                     <div class="home-btns">
+                        <!-- KEY FIX: nav-link class added so JS navigation system handles it -->
                         <a href="#portfolio" class="btn primary nav-link">
-                            <i class="fas fa-rocket"></i>
                             <span>View My Work</span>
                             <div class="btn-hover-effect"></div>
                         </a>
                         <a href="resume.pdf" class="btn secondary" download="Kamran_Ali_Resume.pdf">
-                            <i class="fas fa-file-alt"></i>
                             <span>Download CV</span>
                             <div class="btn-hover-effect"></div>
                         </a>
-                        <a href="#contact" class="btn ghost nav-link">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Hire Me</span>
-                        </a>
-                    </div>
-
-                    <!-- Stats row -->
-                    <div class="hero-stats">
-                        <div class="stat-card">
-                            <span class="stat-num" data-target="1">0</span><span class="stat-unit">+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat-card">
-                            <span class="stat-num" data-target="10">0</span><span class="stat-unit">+</span>
-                            <span class="stat-label">AI Projects</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat-card">
-                            <span class="stat-num" data-target="5">0</span><span class="stat-unit">+</span>
-                            <span class="stat-label">Technologies</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat-card">
-                            <span class="stat-num" data-target="3">0</span><span class="stat-unit"></span>
-                            <span class="stat-label">Internships</span>
-                        </div>
-                    </div>
-
-                    <!-- Tech stack chips -->
-                    <div class="tech-chips">
-                        <span class="chip"><i class="fab fa-python"></i> Python</span>
-                        <span class="chip">🤖 LLMs</span>
-                        <span class="chip">🔗 LangChain</span>
-                        <span class="chip">👁️ OpenCV</span>
-                        <span class="chip">⚡ FastAPI</span>
-                        <span class="chip">🧠 RAG</span>
                     </div>
                 </div>
-
                 <div class="home-image">
                     <div class="image-container">
-                        <!-- Orbit rings -->
-                        <div class="orbit orbit-1">
-                            <div class="orbit-dot" style="--color:#00d9ff"><i class="fab fa-python"></i></div>
-                        </div>
-                        <div class="orbit orbit-2">
-                            <div class="orbit-dot" style="--color:#7e00ff"><i class="fas fa-brain"></i></div>
-                        </div>
-                        <div class="orbit orbit-3">
-                            <div class="orbit-dot" style="--color:#00ff88"><i class="fas fa-robot"></i></div>
-                        </div>
                         <img src="./images/cover-bg .jpeg" alt="Kamran Ali" class="profile-image">
                         <div class="image-glow"></div>
-                        <!-- Floating cards -->
-                        <div class="floating-card card-tl">
-                            <i class="fas fa-check-circle" style="color:#00ff88"></i>
-                            <span>AI Engineer</span>
-                        </div>
-                        <div class="floating-card card-br">
-                            <i class="fas fa-star" style="color:#ffd700"></i>
-                            <span>Pakistan 🇵🇰</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <style>
-    /* ===== HERO REDESIGN ===== */
-    #neuralCanvas {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0.18;
-    }
-
-    #home {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 100px 0 60px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    #home .container { position: relative; z-index: 2; }
-
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(0,217,255,0.08);
-        border: 1px solid rgba(0,217,255,0.3);
-        border-radius: 30px;
-        padding: 6px 16px;
-        font-size: 0.8rem;
-        color: #00d9ff;
-        margin-bottom: 18px;
-        letter-spacing: 0.5px;
-    }
-    .badge-dot {
-        width: 8px; height: 8px;
-        background: #00ff88;
-        border-radius: 50%;
-        animation: pulse-dot 1.5s ease-in-out infinite;
-        box-shadow: 0 0 8px #00ff88;
-    }
-    @keyframes pulse-dot {
-        0%,100% { transform: scale(1); opacity:1; }
-        50% { transform: scale(1.4); opacity:0.6; }
-    }
-
-    .role-switcher {
-        display: flex;
-        align-items: center;
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: #a0a0c0;
-        margin: 8px 0 16px;
-        min-height: 2rem;
-    }
-    .role-words {
-        position: relative;
-        height: 1.8em;
-        overflow: hidden;
-        display: inline-block;
-    }
-    .role-word {
-        display: block;
-        position: absolute;
-        top: 0; left: 0;
-        background: linear-gradient(90deg, #00d9ff, #7e00ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.5s ease;
-        white-space: nowrap;
-    }
-    .role-word.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .hero-desc {
-        font-size: 1rem;
-        color: #a0a0c0;
-        max-width: 520px;
-        line-height: 1.7;
-        margin-bottom: 20px;
-    }
-
-    /* Contact bar */
-    .hero-contact-bar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 24px;
-    }
-    .hc-item {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 0.78rem;
-        color: #a0a0c0;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 6px;
-        padding: 5px 12px;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-    .hc-item:hover {
-        border-color: rgba(0,217,255,0.4);
-        color: #00d9ff;
-        background: rgba(0,217,255,0.07);
-    }
-    .hc-item i { font-size: 0.85rem; color: #00d9ff; }
-
-    /* Buttons */
-    .home-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 26px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.3s; position: relative; overflow: hidden; cursor: pointer; }
-    .btn i { font-size: 0.9rem; }
-    .btn.ghost {
-        background: transparent;
-        border: 1px solid rgba(0,217,255,0.4);
-        color: #00d9ff;
-    }
-    .btn.ghost:hover {
-        background: rgba(0,217,255,0.1);
-    }
-
-    /* Stats */
-    .hero-stats {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 12px;
-        padding: 16px 24px;
-        margin-bottom: 24px;
-        width: fit-content;
-    }
-    .stat-card {
-        text-align: center;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .stat-card .stat-num {
-        font-size: 2rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #00d9ff, #7e00ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1;
-    }
-    .stat-card .stat-unit {
-        font-size: 1.2rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #00d9ff, #7e00ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .stat-card .stat-label {
-        font-size: 0.72rem;
-        color: #6060a0;
-        margin-top: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .stat-divider {
-        width: 1px;
-        height: 40px;
-        background: rgba(255,255,255,0.08);
-    }
-
-    /* Tech chips */
-    .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-        background: rgba(0,217,255,0.06);
-        border: 1px solid rgba(0,217,255,0.18);
-        color: #a0a0c0;
-        border-radius: 20px;
-        padding: 5px 14px;
-        font-size: 0.78rem;
-        transition: all 0.3s;
-    }
-    .chip:hover {
-        background: rgba(0,217,255,0.14);
-        color: #00d9ff;
-        transform: translateY(-2px);
-    }
-
-    /* Image & orbits */
-    .home-image { position: relative; display: flex; justify-content: center; align-items: center; }
-    .image-container { position: relative; width: 320px; height: 320px; }
-
-    .orbit {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px dashed rgba(0,217,255,0.2);
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        animation: orbit-spin 8s linear infinite;
-    }
-    .orbit-1 { width: 380px; height: 380px; }
-    .orbit-2 { width: 440px; height: 440px; animation-duration: 12s; animation-direction: reverse; }
-    .orbit-3 { width: 500px; height: 500px; animation-duration: 16s; }
-
-    @keyframes orbit-spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
-
-    .orbit-dot {
-        position: absolute;
-        top: -16px; left: 50%;
-        transform: translateX(-50%);
-        width: 32px; height: 32px;
-        background: rgba(0,0,0,0.5);
-        border: 1.5px solid var(--color);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 14px;
-        color: var(--color);
-        box-shadow: 0 0 10px var(--color);
-    }
-
-    /* Floating cards */
-    .floating-card {
-        position: absolute;
-        background: rgba(10,10,30,0.85);
-        border: 1px solid rgba(0,217,255,0.2);
-        border-radius: 10px;
-        padding: 8px 14px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.78rem;
-        color: #e0e0ff;
-        backdrop-filter: blur(10px);
-        white-space: nowrap;
-        z-index: 10;
-    }
-    .card-tl { top: -10px; left: -30px; animation: float-card 3s ease-in-out infinite; }
-    .card-br { bottom: 10px; right: -30px; animation: float-card 3s ease-in-out infinite 1.5s; }
-    @keyframes float-card {
-        0%,100% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .hero-stats { flex-wrap: wrap; width: 100%; justify-content: center; }
-        .role-switcher { font-size: 1.1rem; flex-wrap: wrap; }
-        .orbit-2, .orbit-3 { display: none; }
-        .orbit-1 { width: 310px; height: 310px; }
-        .image-container { width: 260px; height: 260px; }
-        .card-tl { left: -10px; }
-        .card-br { right: -10px; }
-        .hero-contact-bar { gap: 6px; }
-    }
-    </style>
-
-    <script>
-    // Role word switcher
-    (function() {
-        const words = document.querySelectorAll('.role-word');
-        let current = 0;
-        setInterval(() => {
-            words[current].classList.remove('active');
-            current = (current + 1) % words.length;
-            words[current].classList.add('active');
-        }, 2200);
-    })();
-
-    // Counter animation
-    (function() {
-        function animateCounters() {
-            document.querySelectorAll('.stat-num').forEach(el => {
-                const target = parseInt(el.dataset.target);
-                let val = 0;
-                const step = Math.max(1, Math.floor(target / 30));
-                const interval = setInterval(() => {
-                    val = Math.min(val + step, target);
-                    el.textContent = val;
-                    if (val >= target) clearInterval(interval);
-                }, 40);
-            });
-        }
-        // Run after a short delay so page loads first
-        setTimeout(animateCounters, 1400);
-    })();
-
-    // Neural canvas background
-    (function() {
-        const canvas = document.getElementById('neuralCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let W, H, nodes = [];
-
-        function resize() {
-            W = canvas.width = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        for (let i = 0; i < 55; i++) {
-            nodes.push({
-                x: Math.random() * W,
-                y: Math.random() * H,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                r: Math.random() * 2 + 1
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, W, H);
-            // Update
-            nodes.forEach(n => {
-                n.x += n.vx; n.y += n.vy;
-                if (n.x < 0 || n.x > W) n.vx *= -1;
-                if (n.y < 0 || n.y > H) n.vy *= -1;
-            });
-            // Lines
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 130) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0,217,255,${1 - dist/130})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            // Dots
-            nodes.forEach(n => {
-                ctx.beginPath();
-                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                ctx.fillStyle = '#00d9ff';
-                ctx.fill();
-            });
-            requestAnimationFrame(draw);
-        }
-        draw();
-    })();
-    </script>
 
     <!-- About Section -->
     <section id="about" class="section">
@@ -542,7 +93,7 @@
                         </div>
                         <div class="detail-item">
                             <div class="detail-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="detail-content"><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e252f233c2f202f22277e767a7a0e29232f2722602d2123">[email&#160;protected]</a></span></div>
+                            <div class="detail-content"><strong>Email:</strong><span>kamranali0844@gmail.com</span></div>
                         </div>
                         <div class="detail-item">
                             <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -883,7 +434,7 @@
                         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <a href="/cdn-cgi/l/email-protection#ee858f839c8f808f8287ded6dadaae89838f8782c08d8183"><span class="__cf_email__" data-cfemail="c5aea4a8b7a4aba4a9acf5fdf1f185a2a8a4aca9eba6aaa8">[email&#160;protected]</span></a>
+                            <a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -939,4 +490,14 @@
                     <span>Kamran Ali</span>
                     <p>AI/ML Engineer</p>
                 </div>
-                <div class="footer-c
+                <div class="footer-copy">
+                    <p>&copy; 2025 Kamran Ali. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
