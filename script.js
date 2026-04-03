@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (mobileMenu) mobileMenu.classList.remove('active');
         }
     }
-    // FIX for "View My Work" button (without nav-link class)
-const viewWorkBtn = document.querySelector('a[href="#portfolio"]');
-const section = document.querySelectorAll(".section");
+    const section = document.querySelectorAll(".section");
 
 if (viewWorkBtn) {
     viewWorkBtn.addEventListener("click", function (e) {
