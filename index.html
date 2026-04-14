@@ -6,6 +6,100 @@
     <title>Kamran Ali | AI Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== HOME HIGHLIGHTS ===== */
+        .home-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+        .highlight-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.1rem 1rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        }
+        .highlight-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .highlight-card--learning {
+            border-color: rgba(126, 0, 255, 0.25);
+            background: rgba(126, 0, 255, 0.05);
+        }
+        .highlight-card--learning:hover {
+            border-color: rgba(126, 0, 255, 0.5);
+            background: rgba(126, 0, 255, 0.1);
+        }
+        .hcard-icon {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+        .highlight-card--learning .hcard-icon {
+            color: #a855f7;
+        }
+        .hcard-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f0f8ff;
+            margin: 0 0 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .hcard-body p {
+            font-size: 0.78rem;
+            color: #a0a0c0;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .learning-badge {
+            font-size: 0.65rem;
+            background: rgba(126, 0, 255, 0.3);
+            color: #c084fc;
+            border: 1px solid rgba(126, 0, 255, 0.4);
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            animation: pulse-badge 2s infinite;
+        }
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        /* Mobile responsive for highlights */
+        @media (max-width: 768px) {
+            .home-highlights {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin: 1.5rem 0 1rem;
+            }
+            .highlight-card {
+                padding: 0.9rem;
+            }
+            .hcard-icon { font-size: 1.3rem; }
+            .hcard-body h4 { font-size: 0.85rem; }
+            .hcard-body p { font-size: 0.76rem; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .home-highlights {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Animated Background -->
@@ -69,7 +163,7 @@
                         <span class="hero-role-cycle" id="roleCycle">AI Systems</span>
                     </div>
 
-                    <p class="hero-desc">Turning cutting-edge research into production-ready AI. Specialized in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, <strong>Agentic AI</strong>, and <strong>Computer Vision</strong> — delivered for real businesses.</p>
+                    <p class="hero-desc">Turning cutting-edge research into production-ready AI. Specialized in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, <strong>Agentic AI</strong>, and <strong>Computer Vision</strong>. Also building full-stack web applications with <strong>Node.js</strong>, <strong>Next.js</strong> &amp; <strong>NestJS</strong> — delivered for real businesses.</p>
 
                     <div class="hero-stats">
                         <div class="stat-pill">
@@ -157,6 +251,31 @@
                 </div>
             </div>
 
+            <!-- What I Do — Highlights -->
+            <div class="home-highlights">
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fas fa-brain"></i></div>
+                    <div class="hcard-body">
+                        <h4>AI / ML Engineer</h4>
+                        <p>LLMs, RAG systems, Agentic AI, Computer Vision &amp; predictive ML models — deployed in production.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fab fa-node-js"></i></div>
+                    <div class="hcard-body">
+                        <h4>Backend &amp; Full-Stack</h4>
+                        <p>Node.js, NestJS, FastAPI, Next.js — scalable APIs and full-stack web applications from scratch.</p>
+                    </div>
+                </div>
+                <div class="highlight-card highlight-card--learning">
+                    <div class="hcard-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="hcard-body">
+                        <h4>Continuously Learning <span class="learning-badge">Active</span></h4>
+                        <p>Deep-diving into advanced Agentic AI, LLM optimization, and modern DevOps — always leveling up.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tech stack strip -->
             <div class="tech-strip">
                 <span class="tech-strip-label">Tech Stack</span>
@@ -166,9 +285,11 @@
                     <span>⛓ LangChain</span>
                     <span><i class="fas fa-server"></i> FastAPI</span>
                     <span>🔷 Next.js</span>
+                    <span><i class="fab fa-node-js"></i> Node.js</span>
                     <span>👁 OpenCV</span>
                     <span>🧠 PyTorch</span>
                     <span>📦 Docker</span>
+                    <span>🐦 NestJS</span>
                 </div>
             </div>
         </div>
@@ -606,7 +727,7 @@
     <script src="script.js"></script>
     <script>
     // ========= ROLE CYCLER =========
-    const roles = ['AI Systems', 'ML Models', 'RAG Pipelines', 'LLM Apps', 'Agentic AI', 'Smart Bots', 'Websites'];
+    const roles = ['AI Systems', 'ML Models', 'RAG Pipelines', 'LLM Apps', 'Agentic AI', 'Smart Bots', 'Websites', 'Node.js APIs', 'Full-Stack Apps'];
     let roleIdx = 0;
     const roleEl = document.getElementById('roleCycle');
     if (roleEl) {
