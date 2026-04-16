@@ -3,762 +3,805 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamran Ali | AI Engineer & ML Specialist</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Kamran Ali | AI Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== HOME HIGHLIGHTS ===== */
+        .home-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+        .highlight-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.1rem 1rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        }
+        .highlight-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .highlight-card--learning {
+            border-color: rgba(126, 0, 255, 0.25);
+            background: rgba(126, 0, 255, 0.05);
+        }
+        .highlight-card--learning:hover {
+            border-color: rgba(126, 0, 255, 0.5);
+            background: rgba(126, 0, 255, 0.1);
+        }
+        .hcard-icon {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+        .highlight-card--learning .hcard-icon {
+            color: #a855f7;
+        }
+        .hcard-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f0f8ff;
+            margin: 0 0 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .hcard-body p {
+            font-size: 0.78rem;
+            color: #a0a0c0;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .learning-badge {
+            font-size: 0.65rem;
+            background: rgba(126, 0, 255, 0.3);
+            color: #c084fc;
+            border: 1px solid rgba(126, 0, 255, 0.4);
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            animation: pulse-badge 2s infinite;
+        }
+        @keyframes pulse-badge {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        /* Mobile responsive for highlights */
+        @media (max-width: 768px) {
+            .home-highlights {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin: 1.5rem 0 1rem;
+            }
+            .highlight-card {
+                padding: 0.9rem;
+            }
+            .hcard-icon { font-size: 1.3rem; }
+            .hcard-body h4 { font-size: 0.85rem; }
+            .hcard-body p { font-size: 0.76rem; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .home-highlights {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- ========== NOISE OVERLAY ========== -->
-<div class="noise-overlay"></div>
-
-<!-- ========== CURSOR ========== -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- ========== ANIMATED BG ========== -->
-<div class="animated-bg">
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
-</div>
-
-<!-- ========== HEADER ========== -->
-<header id="mainHeader">
-    <div class="header-inner">
-        <a class="logo" href="#home" data-nav="home">
-            <span class="logo-bracket">[</span>
-            <span class="logo-name">KA</span>
-            <span class="logo-bracket">]</span>
-            <span class="logo-status"></span>
-        </a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#home" class="nav-link active" data-nav="home">Home</a></li>
-                <li><a href="#about" class="nav-link" data-nav="about">About</a></li>
-                <li><a href="#resume" class="nav-link" data-nav="resume">Resume</a></li>
-                <li><a href="#portfolio" class="nav-link" data-nav="portfolio">Portfolio</a></li>
-                <li><a href="#services" class="nav-link" data-nav="services">Services</a></li>
-                <li><a href="#skills" class="nav-link" data-nav="skills">Skills</a></li>
-                <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
-            </ul>
-        </nav>
-        <a href="resume.pdf" class="header-cta" download>
-            <i class="fas fa-file-arrow-down"></i>
-            <span>Resume</span>
-        </a>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-    <!-- Mobile Nav -->
-    <div class="mobile-nav" id="mobileNav">
-        <ul>
-            <li><a href="#home" class="nav-link" data-nav="home">Home</a></li>
-            <li><a href="#about" class="nav-link" data-nav="about">About</a></li>
-            <li><a href="#resume" class="nav-link" data-nav="resume">Resume</a></li>
-            <li><a href="#portfolio" class="nav-link" data-nav="portfolio">Portfolio</a></li>
-            <li><a href="#services" class="nav-link" data-nav="services">Services</a></li>
-            <li><a href="#skills" class="nav-link" data-nav="skills">Skills</a></li>
-            <li><a href="#contact" class="nav-link" data-nav="contact">Contact</a></li>
-        </ul>
-    </div>
-</header>
-
-<!-- ========== MAIN ========== -->
-<main>
-
-<!-- ========== HOME SECTION ========== -->
-<section id="home" class="section active">
-    <canvas id="particleCanvas"></canvas>
-
-    <div class="home-hero">
-        <!-- Left Column -->
-        <div class="hero-left">
-            <div class="hero-eyebrow">
-                <span class="dot-pulse"></span>
-                <span>Available for Freelance &amp; Full-Time</span>
-            </div>
-
-            <h1 class="hero-name">
-                <span class="name-line" data-text="Kamran">Kamran</span>
-                <span class="name-line name-accent" data-text="Ali">Ali</span>
-            </h1>
-
-            <div class="hero-title-wrap">
-                <span class="title-prefix">// </span>
-                <span class="title-cycle" id="roleCycle">AI Engineer</span>
-                <span class="title-cursor">_</span>
-            </div>
-
-            <p class="hero-bio">
-                Building <strong>production-grade AI</strong> systems — LLMs, RAG Pipelines, Agentic AI &amp; Computer Vision. 
-                Also crafting full-stack web apps with <strong>Node.js · Next.js · NestJS</strong> for real businesses.
-            </p>
-
-            <!-- Stats Row -->
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-val">1+</span>
-                    <span class="stat-lbl">Years Exp.</span>
-                </div>
-                <div class="stat-sep"></div>
-                <div class="stat-item">
-                    <span class="stat-val">20+</span>
-                    <span class="stat-lbl">Projects</span>
-                </div>
-                <div class="stat-sep"></div>
-                <div class="stat-item">
-                    <span class="stat-val">5+</span>
-                    <span class="stat-lbl">Domains</span>
-                </div>
-                <div class="stat-sep"></div>
-                <div class="stat-item">
-                    <span class="stat-val">3</span>
-                    <span class="stat-lbl">Internships</span>
-                </div>
-            </div>
-
-            <!-- CTA Buttons -->
-            <div class="hero-ctas">
-                <a href="#portfolio" class="btn-primary" data-nav="portfolio">
-                    <i class="fas fa-rocket"></i> View My Work
-                </a>
-                <a href="resume.pdf" class="btn-outline" download>
-                    <i class="fas fa-download"></i> Download CV
-                </a>
-            </div>
-
-            <!-- Socials -->
-            <div class="hero-socials">
-                <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener" class="social-btn" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:kamranali0844@gmail.com" class="social-btn" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+923450521045" class="social-btn" title="Phone">
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
         </div>
+    </div>
 
-        <!-- Right Column — Image -->
-        <div class="hero-right">
-            <div class="hero-img-frame">
-                <div class="orbit orbit-1"></div>
-                <div class="orbit orbit-2"></div>
-                <div class="img-container">
-                    <img src="./images/cover-bg .jpeg" alt="Kamran Ali — AI Engineer" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Kamran+Ali&size=320&background=00d9ff&color=050510&bold=true&font-size=0.33'">
-                    <div class="img-glow"></div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-text">Kamran Ali</span>
+                    <div class="logo-dot"></div>
                 </div>
-                <!-- Floating Chips -->
-                <div class="chip chip-tl"><i class="fas fa-brain"></i> LLMs</div>
-                <div class="chip chip-tr"><i class="fas fa-eye"></i> CV</div>
-                <div class="chip chip-bl"><i class="fas fa-robot"></i> Agents</div>
-                <div class="chip chip-br"><i class="fas fa-database"></i> RAG</div>
-                <!-- Status -->
-                <div class="status-chip">
-                    <span class="status-dot"></span>
-                    <div>
-                        <p class="s-label">Currently Working On</p>
-                        <p class="s-val">Agentic AI Systems</p>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#resume" class="nav-link">Resume</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <!-- Particle Canvas -->
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="container">
+            <div class="home-content">
+                <!-- Left: Text -->
+                <div class="home-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Available for Freelance &amp; Full-Time</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- ── What I Do Cards ── -->
-    <div class="home-cards-row">
-        <div class="hcard">
-            <div class="hcard-num">01</div>
-            <div class="hcard-icon"><i class="fas fa-brain"></i></div>
-            <h4>AI / ML Engineer</h4>
-            <p>LLMs, RAG systems, Agentic AI, Computer Vision &amp; predictive ML — deployed in production.</p>
-            <a href="#services" class="hcard-link" data-nav="services">Explore Services →</a>
-        </div>
-        <div class="hcard">
-            <div class="hcard-num">02</div>
-            <div class="hcard-icon"><i class="fab fa-node-js"></i></div>
-            <h4>Backend &amp; Full-Stack</h4>
-            <p>Node.js, NestJS, FastAPI, Next.js — scalable APIs and full-stack web applications from scratch.</p>
-            <a href="#portfolio" class="hcard-link" data-nav="portfolio">See Projects →</a>
-        </div>
-        <div class="hcard hcard-accent">
-            <div class="hcard-num">03</div>
-            <div class="hcard-icon"><i class="fas fa-rocket"></i></div>
-            <h4>Always Learning <span class="badge-live">Active</span></h4>
-            <p>Deep-diving into advanced Agentic AI, LLM optimization, and modern DevOps — always leveling up.</p>
-            <a href="#skills" class="hcard-link" data-nav="skills">View Skills →</a>
-        </div>
-    </div>
-
-    <!-- ── Tech Stack Strip ── -->
-    <div class="tech-strip">
-        <span class="ts-label">Tech Stack</span>
-        <div class="ts-tags">
-            <span><i class="fab fa-python"></i> Python</span>
-            <span>🤗 HuggingFace</span>
-            <span>⛓️ LangChain</span>
-            <span><i class="fas fa-server"></i> FastAPI</span>
-            <span>🔷 Next.js</span>
-            <span><i class="fab fa-node-js"></i> Node.js</span>
-            <span>👁️ OpenCV</span>
-            <span>🧠 PyTorch</span>
-            <span>📦 Docker</span>
-            <span>🐦 NestJS</span>
-            <span>🦙 Ollama</span>
-            <span>🗄️ Vector DBs</span>
-        </div>
-    </div>
-
-    <div class="scroll-hint">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-        <span>Scroll</span>
-    </div>
-</section>
-
-<!-- ========== ABOUT SECTION ========== -->
-<section id="about" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 01</span>
-            <h2 class="sec-title">About Me</h2>
-            <div class="sec-line"></div>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-left">
-                <div class="about-img-wrap">
-                    <img src="./images/cover-bg .jpeg" alt="Kamran Ali" onerror="this.src='https://ui-avatars.com/api/?name=Kamran+Ali&size=400&background=00d9ff&color=050510&bold=true'">
-                    <div class="about-img-border"></div>
-                    <div class="about-exp-badge">
-                        <span class="exp-num">1+</span>
-                        <span class="exp-lbl">Years of<br>Experience</span>
+                    <div class="typing-container">
+                        <h1 class="typing-text">Kamran Ali</h1>
                     </div>
-                </div>
-            </div>
+                    <h2 class="hero-subtitle">AI Engineer &amp; Machine Learning Engineer</h2>
 
-            <div class="about-right">
-                <h3 class="about-greeting">Hi, I'm <span>Kamran Ali</span> 👋</h3>
-                <p>AI/ML Engineer with nearly 1 year of industry experience in developing and deploying intelligent systems using cutting-edge technologies including MediaPipe, and chatbot development. Proven expertise in building real-time video processing pipelines, hand/body detection systems, and LLM-integrated applications.</p>
-                <p>Passionate about AI automation and continuously exploring innovations in NLP. I have hands-on experience with Generative AI, Natural Language Processing, LLM Fine-Tuning, RAG Systems, Research Agents creation, ChatBot Development, and Human pose tracking.</p>
+                    <div class="hero-role-wrapper">
+                        <span class="hero-role-static">I build </span>
+                        <span class="hero-role-cycle" id="roleCycle">AI Systems</span>
+                    </div>
 
-                <div class="about-details">
-                    <div class="detail-row">
-                        <div class="detail-item">
-                            <i class="fas fa-user"></i>
-                            <div><strong>Name</strong><span>Kamran Ali</span></div>
+                    <p class="hero-desc">Turning cutting-edge research into production-ready AI. Specialized in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, <strong>Agentic AI</strong>, and <strong>Computer Vision</strong>. Also building full-stack web applications with <strong>Node.js</strong>, <strong>Next.js</strong> &amp; <strong>NestJS</strong> — delivered for real businesses.</p>
+
+                    <div class="hero-stats">
+                        <div class="stat-pill">
+                            <span class="stat-num">1+</span>
+                            <span class="stat-label">Yr Experience</span>
                         </div>
-                        <div class="detail-item">
+                        <div class="stat-divider"></div>
+                        <div class="stat-pill">
+                            <span class="stat-num">20+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-pill">
+                            <span class="stat-num">5+</span>
+                            <span class="stat-label">Domains</span>
+                        </div>
+                    </div>
+
+                    <div class="home-btns">
+                        <a href="#portfolio" class="btn primary nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>View My Work</span>
+                            <div class="btn-hover-effect"></div>
+                        </a>
+                        <a href="resume.pdf" class="btn secondary" download="Kamran_Ali_Resume.pdf">
+                            <i class="fas fa-download"></i>
+                            <span>Download CV</span>
+                            <div class="btn-hover-effect"></div>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials">
+                        <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:kamranali0844@gmail.com" class="hero-social-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
-                            <div><strong>Email</strong><a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Image + floating cards -->
+                <div class="home-image">
+                    <div class="hero-image-wrap">
+                        <!-- Orbit ring -->
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
+
+                        <!-- Profile pic -->
+                        <div class="image-container">
+                            <img src="./images/cover-bg .jpeg" alt="Kamran Ali" class="profile-image">
+                            <div class="image-glow"></div>
+                        </div>
+
+                        <!-- Floating skill badges -->
+                        <div class="float-badge float-badge--tl">
+                            <i class="fas fa-brain"></i>
+                            <span>LLMs</span>
+                        </div>
+                        <div class="float-badge float-badge--tr">
+                            <i class="fas fa-eye"></i>
+                            <span>CV</span>
+                        </div>
+                        <div class="float-badge float-badge--bl">
+                            <i class="fas fa-robot"></i>
+                            <span>Agents</span>
+                        </div>
+                        <div class="float-badge float-badge--br">
+                            <i class="fas fa-database"></i>
+                            <span>RAG</span>
+                        </div>
+
+                        <!-- Live status card -->
+                        <div class="hero-status-card">
+                            <div class="status-pulse"></div>
+                            <div class="status-text">
+                                <span class="status-title">Currently Working On</span>
+                                <span class="status-val">Agentic AI Systems</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="detail-row">
+                </div>
+            </div>
+
+            <!-- What I Do — Highlights -->
+            <div class="home-highlights">
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fas fa-brain"></i></div>
+                    <div class="hcard-body">
+                        <h4>AI / ML Engineer</h4>
+                        <p>LLMs, RAG systems, Agentic AI, Computer Vision &amp; predictive ML models — deployed in production.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fab fa-node-js"></i></div>
+                    <div class="hcard-body">
+                        <h4>Backend &amp; Full-Stack</h4>
+                        <p>Node.js, NestJS, FastAPI, Next.js — scalable APIs and full-stack web applications from scratch.</p>
+                    </div>
+                </div>
+                <div class="highlight-card highlight-card--learning">
+                    <div class="hcard-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="hcard-body">
+                        <h4>Continuously Learning <span class="learning-badge">Active</span></h4>
+                        <p>Deep-diving into advanced Agentic AI, LLM optimization, and modern DevOps — always leveling up.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech stack strip -->
+            <div class="tech-strip">
+                <span class="tech-strip-label">Tech Stack</span>
+                <div class="tech-tags">
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span>🤗 HuggingFace</span>
+                    <span>⛓ LangChain</span>
+                    <span><i class="fas fa-server"></i> FastAPI</span>
+                    <span>🔷 Next.js</span>
+                    <span><i class="fab fa-node-js"></i> Node.js</span>
+                    <span>👁 OpenCV</span>
+                    <span>🧠 PyTorch</span>
+                    <span>📦 Docker</span>
+                    <span>🐦 NestJS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hi There! I'm Kamran Ali</h3>
+                    <p>AI/ML Engineer with nearly 1 year of industry experience in developing and deploying intelligent systems using cutting-edge technologies including MediaPipe, and chatbot development. Proven expertise in building real-time video processing pipelines, hand/body detection systems, and LLM-integrated applications.</p>
+                    <p>Passionate about AI automation and continuously exploring innovations in NLP. I have hands-on experience with Generative AI, Natural Language Processing, LLM Fine Tuning, RAG Systems, Research Agents creation, ChatBot Development, and Human pose and hand sign tracking.</p>
+                    <div class="about-details">
                         <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div><strong>Location</strong><span>Lahore, Pakistan</span></div>
+                            <div class="detail-icon"><i class="fas fa-user"></i></div>
+                            <div class="detail-content"><strong>Name:</strong><span>Kamran Ali</span></div>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-briefcase"></i>
-                            <div><strong>Status</strong><span class="open-badge">Open to Work</span></div>
-                        </div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-item">
-                            <i class="fas fa-phone"></i>
-                            <div><strong>Phone</strong><a href="tel:+923450521045">+92-3450521045</a></div>
+                            <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="detail-content"><strong>Email:</strong><span><a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a></span></div>
                         </div>
                         <div class="detail-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div><strong>Degree</strong><span>BS Computer Science</span></div>
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-content"><strong>Location:</strong><span>Lahore, Pakistan</span></div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="about-btns">
-                    <a href="#contact" class="btn-primary" data-nav="contact"><i class="fas fa-paper-plane"></i> Hire Me</a>
-                    <a href="resume.pdf" class="btn-outline" download><i class="fas fa-download"></i> Download CV</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== RESUME SECTION ========== -->
-<section id="resume" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 02</span>
-            <h2 class="sec-title">Resume</h2>
-            <div class="sec-line"></div>
-        </div>
-
-        <div class="resume-grid">
-            <!-- Education -->
-            <div class="resume-col">
-                <h3 class="resume-col-title"><i class="fas fa-graduation-cap"></i> Education</h3>
-                <div class="timeline">
-                    <div class="tl-item">
-                        <div class="tl-dot"></div>
-                        <div class="tl-content">
-                            <span class="tl-date">2020 – 2024</span>
-                            <h4>BS Computer Science</h4>
-                            <p class="tl-company">Khawaja Fareed University of Engineering &amp; IT</p>
-                            <p>4-year degree with focus on AI, Machine Learning, Deep Learning, data structures, algorithms &amp; software engineering.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Experience -->
-            <div class="resume-col">
-                <h3 class="resume-col-title"><i class="fas fa-briefcase"></i> Experience</h3>
-                <div class="timeline">
-                    <div class="tl-item">
-                        <div class="tl-dot tl-dot--active"></div>
-                        <div class="tl-content">
-                            <span class="tl-date">Sep 2024 – Dec 2025</span>
-                            <h4>AI / ML Engineer</h4>
-                            <p class="tl-company">Tammz Technologies, UK</p>
-                            <ul>
-                                <li>Developed RAG systems using LangChain &amp; LlamaIndex</li>
-                                <li>Managed data indexing with vector databases (Pinecone, Qdrant)</li>
-                                <li>Improved LLM accuracy via prompt &amp; retrieval optimization</li>
-                                <li>Optimized LLaMA models for RAG production pipelines</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-dot"></div>
-                        <div class="tl-content">
-                            <span class="tl-date">May 2024 – Jul 2024</span>
-                            <h4>ML Engineer Intern</h4>
-                            <p class="tl-company">Mentorsol, Remote (India)</p>
-                            <ul>
-                                <li>Developed predictive models on complex datasets</li>
-                                <li>Data preprocessing, feature engineering with Python/TensorFlow</li>
-                                <li>Delivered AI/ML solutions for real-world problems</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-dot"></div>
-                        <div class="tl-content">
-                            <span class="tl-date">Oct 2023 – Dec 2023</span>
-                            <h4>Data Science Intern</h4>
-                            <p class="tl-company">NGS Technologies, Rahim Yar Khan</p>
-                            <ul>
-                                <li>Hands-on ML projects (regression &amp; classification)</li>
-                                <li>Data preprocessing, model building &amp; evaluation in Python</li>
-                            </ul>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="detail-content"><strong>Availability:</strong><span>Open to Opportunities</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="resume-download">
-            <a href="resume.pdf" class="btn-primary" download>
-                <i class="fas fa-file-arrow-down"></i> Download Full Resume
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ========== PORTFOLIO SECTION ========== -->
-<section id="portfolio" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 03</span>
-            <h2 class="sec-title">Featured Projects</h2>
-            <div class="sec-line"></div>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="portfolio-filters">
-            <button class="pf-btn active" data-filter="all">All</button>
-            <button class="pf-btn" data-filter="ai">AI / LLM</button>
-            <button class="pf-btn" data-filter="ml">ML / CV</button>
-            <button class="pf-btn" data-filter="web">Web</button>
-        </div>
-
-        <div class="portfolio-grid" id="portfolioGrid">
-
-            <div class="pcard" data-cat="ai">
-                <div class="pcard-img">
-                    <img src="images/story_bible.jpg" alt="AI Story Engine" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=AI+Story+Engine'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/ai-story-bible" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <span class="pcard-badge">AI / LLM</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>Private AI Story Engine</h3>
-                    <p>Local AI assistant with intelligent context management and automated Story Bible generation using Ollama.</p>
-                    <div class="pcard-tags">
-                        <span>Ollama</span><span>FastAPI</span><span>Next.js</span>
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-content">
+                <div class="education">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="education-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <span class="date">2020 - 2024</span>
+                        <p class="institution">Khawaja Fareed University Engineering Information Technology</p>
+                        <p>Successfully completed a 4-year Bachelor's degree in Computer Science with a focus on software development, data structures, algorithms, databases, Artificial Intelligence, Machine Learning, Deep Learning and data science techniques.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="pcard" data-cat="ai">
-                <div class="pcard-img">
-                    <img src="images/jarvis_assistant.jpg" alt="JARVIS" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=JARVIS+Assistant'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/jarvis-System" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
+                <div class="experience">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>AI/ML Engineer</h4>
+                        <span class="date">SEP 2024 - DEC 2025</span>
+                        <p class="company">Tammz Technologies, UK Based</p>
+                        <ul>
+                            <li>Developed RAG systems using LangChain.</li>
+                            <li>Managed data indexing with vector databases.</li>
+                            <li>Improved LLM accuracy via prompt and retrieval optimization.</li>
+                            <li>Optimized prompts in LLaMA models to enhance performance in Retrieval-Augmented Generation (RAG) systems.</li>
+                        </ul>
                     </div>
-                    <span class="pcard-badge">Voice AI</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>Voice-Controlled JARVIS</h3>
-                    <p>Voice-activated AI assistant for system automation, web tasks, and app control using Ollama.</p>
-                    <div class="pcard-tags">
-                        <span>Voice AI</span><span>Python</span><span>Automation</span>
+
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Machine Learning Engineer Intern</h4>
+                        <span class="date">MAY 2024 - JULY 2024</span>
+                        <p class="company">MENTORSOL REMOTE - INDIA</p>
+                        <ul>
+                            <li>Developed predictive models and applied ML on complex datasets.</li>
+                            <li>Skilled in data preprocessing, feature engineering, and Python/TensorFlow.</li>
+                            <li>Passionate about delivering AI/ML solutions for real-world problems.</li>
+                        </ul>
                     </div>
-                </div>
-            </div>
 
-            <div class="pcard" data-cat="ai">
-                <div class="pcard-img">
-                    <img src="images/RA.jpg" alt="Research Agent" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=Research+Agent'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/Marketing-Research-Agent" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <span class="pcard-badge">Agentic AI</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>Marketing Research Agent</h3>
-                    <p>RAG-based agent providing real-time market updates and strategic insights with web search.</p>
-                    <div class="pcard-tags">
-                        <span>RAG</span><span>Agentic AI</span><span>LLM</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pcard" data-cat="ml">
-                <div class="pcard-img">
-                    <img src="images/heart_disease.jpg" alt="Heart Disease" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=Heart+Disease+Prediction'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/Heart-Disease-Prediction.git" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <span class="pcard-badge pcard-badge--green">92% Acc.</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>Heart Disease Prediction</h3>
-                    <p>Advanced classification model identifying cardiovascular risk factors using patient data.</p>
-                    <div class="pcard-tags">
-                        <span>Scikit-Learn</span><span>Healthcare</span><span>XGBoost</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pcard" data-cat="ml">
-                <div class="pcard-img">
-                    <img src="images/phishing_detection.jpg" alt="Phishing Detection" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=Phishing+Detection'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/Phinshing-Detection-By-passiny/tree/main" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <span class="pcard-badge pcard-badge--green">94% Acc.</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>Phishing Detection System</h3>
-                    <p>ML model for cybersecurity to identify and flag malicious URLs in real-time.</p>
-                    <div class="pcard-tags">
-                        <span>Cybersecurity</span><span>ML</span><span>Random Forest</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pcard" data-cat="ml">
-                <div class="pcard-img">
-                    <img src="images/cosmatic_analysis.jpg" alt="E-Commerce" onerror="this.src='https://via.placeholder.com/400x220/0a0a16/00d9ff?text=E-Commerce+Analytics'">
-                    <div class="pcard-overlay">
-                        <a href="https://github.com/KamranAli786320/Eccomerce-Cosmetics-Prediction.git" target="_blank" rel="noopener" class="pcard-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <span class="pcard-badge">Analytics</span>
-                </div>
-                <div class="pcard-body">
-                    <h3>E-Commerce Analytics</h3>
-                    <p>Predictive analysis and consumer behavior modeling for the cosmetics industry.</p>
-                    <div class="pcard-tags">
-                        <span>Data Analytics</span><span>Plotly</span><span>XGBoost</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="portfolio-more">
-            <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener" class="btn-outline">
-                <i class="fab fa-github"></i> View All on GitHub
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ========== SERVICES SECTION ========== -->
-<section id="services" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 04</span>
-            <h2 class="sec-title">Services</h2>
-            <div class="sec-line"></div>
-        </div>
-
-        <div class="services-grid">
-            <div class="svc-card">
-                <div class="svc-num">01</div>
-                <div class="svc-icon"><i class="fas fa-comments"></i></div>
-                <h3>AI Chatbot Development</h3>
-                <p>Custom conversational AI for seamless customer support and engagement, using state-of-the-art NLP models and LLMs.</p>
-                <div class="svc-tags"><span>NLP</span><span>Multi-lingual</span><span>API Integration</span></div>
-            </div>
-            <div class="svc-card">
-                <div class="svc-num">02</div>
-                <div class="svc-icon"><i class="fas fa-database"></i></div>
-                <h3>RAG Systems</h3>
-                <p>Retrieval-Augmented Generation systems connecting LLMs to your private data for accurate, hallucination-free answers.</p>
-                <div class="svc-tags"><span>Vector DBs</span><span>Semantic Search</span><span>Document AI</span></div>
-            </div>
-            <div class="svc-card svc-card--featured">
-                <div class="svc-featured-label">Most Requested</div>
-                <div class="svc-num">03</div>
-                <div class="svc-icon"><i class="fas fa-microchip"></i></div>
-                <h3>Agentic AI Systems</h3>
-                <p>Autonomous AI agents capable of planning, using tools, and executing complex multi-step workflows with minimal human intervention.</p>
-                <div class="svc-tags"><span>LangChain</span><span>Tool Use</span><span>Task Automation</span></div>
-            </div>
-            <div class="svc-card">
-                <div class="svc-num">04</div>
-                <div class="svc-icon"><i class="fas fa-shopping-cart"></i></div>
-                <h3>Full-Stack Web Apps</h3>
-                <p>Scalable web applications and e-commerce platforms with integrated AI for personalized user experiences.</p>
-                <div class="svc-tags"><span>Next.js / NestJS</span><span>FastAPI</span><span>Dashboards</span></div>
-            </div>
-            <div class="svc-card">
-                <div class="svc-num">05</div>
-                <div class="svc-icon"><i class="fas fa-eye"></i></div>
-                <h3>Computer Vision &amp; ML</h3>
-                <p>Real-time object detection, facial recognition, and predictive modeling for industrial and retail automation.</p>
-                <div class="svc-tags"><span>YOLO / OpenCV</span><span>MediaPipe</span><span>Pose Estimation</span></div>
-            </div>
-            <div class="svc-card">
-                <div class="svc-num">06</div>
-                <div class="svc-icon"><i class="fas fa-chart-bar"></i></div>
-                <h3>Data Analytics &amp; EDA</h3>
-                <p>Transforming complex data into actionable insights through advanced visualization and statistical analysis.</p>
-                <div class="svc-tags"><span>EDA</span><span>Plotly / Seaborn</span><span>Insights</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== SKILLS SECTION ========== -->
-<section id="skills" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 05</span>
-            <h2 class="sec-title">Skills</h2>
-            <div class="sec-line"></div>
-        </div>
-
-        <div class="skills-layout">
-            <!-- Skill Bars -->
-            <div class="skills-bars">
-                <h3 class="skills-sub">Technical Proficiency</h3>
-
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Python</span><span>95%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="95"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Machine Learning / Deep Learning</span><span>90%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="90"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>LLM Fine-Tuning &amp; RAG</span><span>85%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="85"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>FastAPI</span><span>90%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="90"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>NestJS</span><span>75%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="75"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Next.js (React)</span><span>75%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="75"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Agentic AI (LangChain / Autogen)</span><span>80%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="80"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>OpenCV / YOLO / MediaPipe</span><span>75%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="75"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Data Pre-Processing</span><span>95%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="95"></div></div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-meta"><span>Flask / Django</span><span>80%</span></div>
-                    <div class="skill-track"><div class="skill-fill" data-w="80"></div></div>
-                </div>
-            </div>
-
-            <!-- Radar + Tools -->
-            <div class="skills-right">
-                <div class="radar-wrap">
-                    <canvas id="radarChart"></canvas>
-                </div>
-                <div class="tools-grid">
-                    <h3 class="skills-sub">Tools &amp; Platforms</h3>
-                    <div class="tool-chips">
-                        <span>🐍 Python</span>
-                        <span>🔥 PyTorch</span>
-                        <span>🤗 HuggingFace</span>
-                        <span>⛓️ LangChain</span>
-                        <span>🗄️ Pinecone</span>
-                        <span>🦙 Ollama</span>
-                        <span>📦 Docker</span>
-                        <span>🐘 PostgreSQL</span>
-                        <span>🍃 MongoDB</span>
-                        <span>☁️ AWS</span>
-                        <span>🐱 GitHub</span>
-                        <span>⚡ Redis</span>
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Data Science Intern</h4>
+                        <span class="date">OCT 2023 - DEC 2023</span>
+                        <p class="company">NGS TECHNOLOGIES RAHIMYARKHAN</p>
+                        <ul>
+                            <li>Hands-on experience with ML projects (regression &amp; classification).</li>
+                            <li>Data preprocessing, model building, and evaluation in Python.</li>
+                            <li>Applied ML techniques to solve real-world problems.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ========== CONTACT SECTION ========== -->
-<section id="contact" class="section">
-    <div class="container">
-        <div class="sec-header">
-            <span class="sec-tag">// 06</span>
-            <h2 class="sec-title">Contact</h2>
-            <div class="sec-line"></div>
-        </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured AI &amp; Machine Learning Projects</h2>
+            <div class="portfolio-grid">
 
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Let's <span>Work Together</span></h3>
-                <p>Have a project in mind? Looking for an AI Engineer to join your team? Let's talk — I'm always open to exciting opportunities.</p>
-
-                <div class="contact-items">
-                    <a href="tel:+923450521045" class="cinfo-item">
-                        <div class="cinfo-icon"><i class="fas fa-phone"></i></div>
-                        <div>
-                            <strong>Phone</strong>
-                            <span>+92-3450521045</span>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/story_bible.jpg" alt="AI Story Writing Engine">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/ai-story-bible" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
                         </div>
-                    </a>
-                    <a href="mailto:kamranali0844@gmail.com" class="cinfo-item">
-                        <div class="cinfo-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <strong>Email</strong>
-                            <span>kamranali0844@gmail.com</span>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Private AI Story Engine</h3>
+                        <p>Local AI assistant with intelligent context management and automated Story Bible generation.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Ollama</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Next.js</span>
                         </div>
-                    </a>
-                    <div class="cinfo-item">
-                        <div class="cinfo-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <strong>Location</strong>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/jarvis_assistant.jpg" alt="JARVIS Assistant">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/jarvis-System" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Voice-Controlled JARVIS</h3>
+                        <p>Voice-activated AI assistant for system automation, web tasks, and app control using Ollama.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Voice AI</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/RA.jpg" alt="Marketing Research Assistant">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/Marketing-Research-Agent" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Marketing Research Agent</h3>
+                        <p>RAG-based agent that provides real-time market updates and strategic insights.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">RAG</span>
+                            <span class="tag">Agentic AI</span>
+                            <span class="tag">LLM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/heart_disease.jpg" alt="Heart Disease Prediction">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/Heart-Disease-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Heart Disease Prediction</h3>
+                        <p>Advanced classification model to identify cardiovascular risk factors using patient data.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Scikit-Learn</span>
+                            <span class="tag">Healthcare</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/phishing_detection.jpg" alt="Phishing Detection">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/Phinshing-Detection-By-passiny/tree/main" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Phishing Detection System</h3>
+                        <p>Machine Learning model focused on cybersecurity to identify and flag malicious URLs.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Cybersecurity</span>
+                            <span class="tag">ML</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="images/cosmatic_analysis.jpg" alt="Cosmetic Analysis">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-links">
+                                <a href="https://github.com/KamranAli786320/Eccomerce-Cosmetics-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Analytics</h3>
+                        <p>Predictive analysis and consumer behavior modeling for the cosmetics industry.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Data Analytics</span>
+                            <span class="tag">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comments"></i></div>
+                    <h3>AI Chatbot Development</h3>
+                    <p>Custom conversational AI for seamless customer support and engagement, using state-of-the-art NLP models.</p>
+                    <div class="service-features"><span>NLP</span><span>Multi-lingual</span><span>API Integration</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-database"></i></div>
+                    <h3>RAG Systems</h3>
+                    <p>Retrieval-Augmented Generation systems that connect LLMs to your private data for accurate, hallucination-free answers.</p>
+                    <div class="service-features"><span>Vector DBs</span><span>Document Analysis</span><span>Semantic Search</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Agentic AI Systems</h3>
+                    <p>Autonomous AI agents capable of planning, using tools, and executing complex workflows with minimal human intervention.</p>
+                    <div class="service-features"><span>Auto-GPT</span><span>Tool Use</span><span>Task Automation</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Product-Based Systems</h3>
+                    <p>Scalable web applications and e-commerce platforms with integrated AI for personalized user experiences.</p>
+                    <div class="service-features"><span>Next.js / NestJS</span><span>Recommendation Engines</span><span>Admin Dashboards</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Computer Vision &amp; ML</h3>
+                    <p>Real-time object detection, facial recognition, and predictive modeling for industrial and retail automation.</p>
+                    <div class="service-features"><span>YOLO / OpenCV</span><span>ANPR</span><span>Predictive Modeling</span></div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Data Analytics</h3>
+                    <p>Transforming complex data into actionable insights through advanced visualization and statistical analysis.</p>
+                    <div class="service-features"><span>EDA</span><span>Dashboarding</span><span>Insights</span></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-content">
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Python</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Machine Learning / Deep Learning</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>LLM Fine-Tuning &amp; RAG</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>FastAPI</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>NestJS</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Next.js (React)</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Agentic AI (LangChain / Autogen)</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>OpenCV / YOLO / MediaPipe</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Data Pre-Processing</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Flask / Django</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                    </div>
+                </div>
+                <div class="skills-visual">
+                    <div class="skill-radar">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <a href="tel:+923450521045">+92-3450521045</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
                             <span>Lahore, Pakistan</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-socials">
-                    <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener" class="csoc-btn">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
-                    </a>
-                    <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener" class="csoc-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
-
-            <div class="contact-form-wrap">
-                <form id="contactForm" class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Your Name</label>
-                            <input type="text" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Your Email</label>
-                            <input type="email" placeholder="john@example.com" required>
+                    <div class="social-links">
+                        <h4>Follow Me</h4>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/KamranAli786320" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Subject</label>
-                        <input type="text" placeholder="Project Inquiry" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary form-submit">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary">
+                            <span>Send Message</span>
+                            <div class="btn-hover-effect"></div>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-</main>
-
-<!-- ========== FOOTER ========== -->
-<footer>
-    <div class="footer-inner">
-        <div class="footer-logo">
-            <span class="logo-bracket">[</span>KA<span class="logo-bracket">]</span>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Kamran Ali</span>
+                    <p>AI/ML Engineer</p>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2025 Kamran Ali. All Rights Reserved.</p>
+                </div>
+            </div>
         </div>
-        <p class="footer-copy">© 2025 Kamran Ali. Built with passion &amp; AI.</p>
-        <div class="footer-links">
-            <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-            <a href="mailto:kamranali0844@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<!-- ========== BACK TO TOP ========== -->
-<button class="back-to-top" id="backTop" title="Back to top">
-    <i class="fas fa-arrow-up"></i>
-</button>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // ========= ROLE CYCLER =========
+    const roles = ['AI Systems', 'ML Models', 'RAG Pipelines', 'LLM Apps', 'Agentic AI', 'Smart Bots', 'Websites', 'Node.js APIs', 'Full-Stack Apps'];
+    let roleIdx = 0;
+    const roleEl = document.getElementById('roleCycle');
+    if (roleEl) {
+        setInterval(() => {
+            roleEl.style.opacity = '0';
+            roleEl.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                roleIdx = (roleIdx + 1) % roles.length;
+                roleEl.textContent = roles[roleIdx];
+                roleEl.style.opacity = '1';
+                roleEl.style.transform = 'translateY(0)';
+            }, 350);
+        }, 2500);
+    }
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="script.js"></script>
+    // ========= PARTICLE CANVAS =========
+    const canvas = document.getElementById('particleCanvas');
+    if (canvas) {
+        const ctx2 = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() {
+            const homeSection = document.getElementById('home');
+            canvas.width = homeSection.offsetWidth;
+            canvas.height = homeSection.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx2.beginPath();
+                ctx2.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx2.fillStyle = `rgba(0,217,255,${this.opacity})`;
+                ctx2.fill();
+            }
+        }
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx2.beginPath();
+                        ctx2.strokeStyle = `rgba(0,217,255,${0.06 * (1 - dist / 100)})`;
+                        ctx2.lineWidth = 0.5;
+                        ctx2.moveTo(particles[i].x, particles[i].y);
+                        ctx2.lineTo(particles[j].x, particles[j].y);
+                        ctx2.stroke();
+                    }
+                }
+            }
+        }
+        function animateParticles() {
+            ctx2.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            drawLines();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    }
+    </script>
 </body>
 </html>
