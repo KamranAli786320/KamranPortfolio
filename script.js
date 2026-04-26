@@ -14,34 +14,29 @@ document.addEventListener('DOMContentLoaded', function () {
      * Call this from ANYWHERE to switch to a section by ID (e.g. 'portfolio').
      */
     function navigateTo(sectionId) {
-        // Remove active from all sections and nav links
         sections.forEach(s => s.classList.remove('active'));
         navLinks.forEach(l => l.classList.remove('active'));
 
-        // Show target section
         const target = document.getElementById(sectionId);
         if (target) {
             target.classList.add('active');
-            // Small delay so display:block kicks in before scroll
             setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 30);
         }
 
-        // Highlight matching nav link (href="#sectionId")
         const matchingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
         if (matchingLink) matchingLink.classList.add('active');
 
-        // Close mobile menu if open
         if (navLinksContainer.classList.contains('active')) {
             navLinksContainer.classList.remove('active');
             if (mobileMenu) mobileMenu.classList.remove('active');
         }
     }
 
-    // Wire up ALL .nav-link clicks (includes the "View My Work" button since it has nav-link class)
+    // Wire up ALL .nav-link clicks
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-            const href = this.getAttribute('href'); // e.g. "#portfolio"
+            const href = this.getAttribute('href');
             if (href && href.startsWith('#')) {
                 navigateTo(href.substring(1));
             }
@@ -64,6 +59,23 @@ document.addEventListener('DOMContentLoaded', function () {
             mobileMenu.classList.remove('active');
             navLinksContainer.classList.remove('active');
         }
+    });
+
+    // ===================== PORTFOLIO TABS =====================
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const portfolioPanes = document.querySelectorAll('.portfolio-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Remove active from all tabs and panes
+            tabBtns.forEach(b => b.classList.remove('active'));
+            portfolioPanes.forEach(p => p.classList.remove('active'));
+
+            // Activate clicked tab and corresponding pane
+            this.classList.add('active');
+            const targetPane = document.getElementById('pane-' + this.dataset.tab);
+            if (targetPane) targetPane.classList.add('active');
+        });
     });
 
     // ===================== SKILL BARS =====================
@@ -89,6 +101,17 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(skillsSection);
     }
 
+    // Also trigger skill bars when Skills nav is clicked
+    const skillsNavLink = document.querySelector('.nav-link[href="#skills"]');
+    if (skillsNavLink) {
+        skillsNavLink.addEventListener('click', function () {
+            setTimeout(() => {
+                animateSkillBars();
+                createRadarChart();
+            }, 400);
+        });
+    }
+
     // ===================== RADAR CHART =====================
     function createRadarChart() {
         const radarElement = document.getElementById('radarChart');
@@ -96,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const ctx = radarElement.getContext('2d');
 
-        // Destroy old instance if exists
         if (window.myRadarChart) {
             window.myRadarChart.destroy();
         }
@@ -109,15 +131,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     'AI/ML/DL',
                     'LLM & RAG',
                     'FastAPI',
-                    'NestJS',
+                    'WordPress',
                     'Next.js',
                     'Agentic AI',
                     'Computer Vision'
                 ],
                 datasets: [{
                     label: 'Expertise Level',
-                    data: [95, 90, 85, 90, 75, 75, 80, 85],
-                    backgroundColor: 'rgba(0, 217, 255, 0.2)',
+                    data: [95, 90, 85, 90, 85, 75, 80, 75],
+                    backgroundColor: 'rgba(0, 217, 255, 0.15)',
                     borderColor: 'rgba(0, 217, 255, 1)',
                     pointBackgroundColor: 'rgba(0, 217, 255, 1)',
                     pointBorderColor: '#fff',
@@ -133,14 +155,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     title: {
                         display: true,
                         text: 'Technical Proficiency',
-                        color: '#f0f8ff'
+                        color: '#f0f8ff',
+                        font: { size: 14 }
                     }
                 },
                 scales: {
                     r: {
                         angleLines: { color: 'rgba(160, 160, 192, 0.2)' },
                         grid: { color: 'rgba(160, 160, 192, 0.2)' },
-                        pointLabels: { color: '#a0a0c0', font: { size: 12 } },
+                        pointLabels: { color: '#a0a0c0', font: { size: 11 } },
                         ticks: {
                             display: false,
                             backdropColor: 'transparent',
@@ -192,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Analytics dropdown (safe — won't crash if analytics section is commented out)
     const dropdownBtn = document.getElementById('dropdown-btn');
     const dropdownContent = document.getElementById('dropdown-content');
     const selectedProject = document.getElementById('selected-project');
@@ -311,7 +333,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
+            btn.style.background = 'linear-gradient(90deg, #00ff88, #00d9ff)';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+            }, 3000);
             this.reset();
         });
     }
@@ -329,6 +358,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(typeWriter, 100);
             }
         }
-        setTimeout(typeWriter, 1000);
+        setTimeout(typeWriter, 800);
     }
+
+    // ===================== ACTIVE NAV ON SCROLL =====================
+    // (Portfolio uses SPA-style sections, but this handles header highlight)
+    window.addEventListener('scroll', function () {
+        const header = document.querySelector('header');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(5, 5, 16, 0.97)';
+            } else {
+                header.style.background = 'rgba(10, 10, 22, 0.9)';
+            }
+        }
+    });
+
 });
