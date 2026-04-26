@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamran Ali | AI Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== HOME HIGHLIGHTS ===== */
+        .home-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+        .highlight-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.1rem 1rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s;
+        }
+        .highlight-card:hover {
+            border-color: rgba(0, 217, 255, 0.4);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .highlight-card--learning {
+            border-color: rgba(126, 0, 255, 0.25);
+            background: rgba(126, 0, 255, 0.05);
+        }
+        .highlight-card--learning:hover {
+            border-color: rgba(126, 0, 255, 0.5);
+            background: rgba(126, 0, 255, 0.1);
+        }
+        .hcard-icon {
+            font-size: 1.5rem;
+            color: #00d9ff;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+        .highlight-card--learning .hcard-icon { color: #a855f7; }
+        .hcard-body h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f0f8ff;
+            margin: 0 0 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .hcard-body p {
+            font-size: 0.78rem;
+            color: #a0a0c0;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .learning-badge {
+            font-size: 0.65rem;
+            background: rgba(126, 0, 255, 0.3);
+            color: #c084fc;
+            border: 1px solid rgba(126, 0, 255, 0.4);
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            animation: pulse-badge 2s infinite;
+        }
+        @keyframes pulse-badge { 0%,100%{opacity:1}50%{opacity:.6} }
+
+        /* ===== PORTFOLIO TABS ===== */
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border-radius: 30px;
+            border: 1px solid rgba(0,217,255,0.25);
+            background: transparent;
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            color: var(--darker);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,217,255,0.25);
+        }
+
+        .portfolio-pane { display: none; }
+        .portfolio-pane.active { display: block; animation: fadeIn 0.5s ease; }
+
+        /* ===== VIDEO LINK BUTTON ===== */
+        .portfolio-video-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 14px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: rgba(0,217,255,0.08);
+            border: 1px solid rgba(0,217,255,0.3);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .portfolio-video-btn:hover {
+            background: var(--primary);
+            color: var(--darker);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,217,255,0.3);
+        }
+        .portfolio-video-btn i { font-size: 0.85rem; }
+
+        /* ===== DRIVE FOLDER BANNER ===== */
+        .drive-folder-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: rgba(0,217,255,0.05);
+            border: 1px solid rgba(0,217,255,0.18);
+            border-radius: 14px;
+            padding: 16px 22px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .drive-folder-banner .dfb-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .drive-folder-banner .dfb-icon {
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+        .drive-folder-banner .dfb-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 2px;
+        }
+        .drive-folder-banner .dfb-info p {
+            font-size: 0.78rem;
+            color: var(--gray);
+            margin: 0;
+        }
+        .drive-folder-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 25px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--darker);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .drive-folder-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,217,255,0.35);
+            opacity: 0.92;
+        }
+
+        /* ===== WORDPRESS PORTFOLIO GRID ===== */
+        .wp-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .wp-portfolio-item {
+            background: rgba(10,10,22,0.7);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0,217,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .wp-portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,217,255,0.15);
+            border-color: rgba(0,217,255,0.3);
+        }
+        .wp-item-header {
+            padding: 20px 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wp-item-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(126,0,255,0.15));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .wp-item-meta h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 2px;
+        }
+        .wp-item-meta span {
+            font-size: 0.72rem;
+            color: var(--gray);
+        }
+        .wp-item-body {
+            padding: 14px 20px 20px;
+        }
+        .wp-item-body p {
+            font-size: 0.83rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .wp-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .wp-tag {
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(126,0,255,0.1);
+            border: 1px solid rgba(126,0,255,0.25);
+            font-size: 0.7rem;
+            color: #c084fc;
+            font-weight: 500;
+        }
+
+        /* ===== AIML SECTION DRIVE BANNER ===== */
+        .aiml-drive-banner {
+            background: linear-gradient(135deg, rgba(0,217,255,0.06), rgba(126,0,255,0.06));
+            border: 1px solid rgba(126,0,255,0.2);
+        }
+        .aiml-drive-banner .dfb-icon { color: #a855f7; }
+        .aiml-drive-banner .drive-folder-link {
+            background: linear-gradient(90deg, #7e00ff, #c084fc);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .home-highlights { grid-template-columns: 1fr; gap: 0.75rem; margin: 1.5rem 0 1rem; }
+            .highlight-card { padding: 0.9rem; }
+            .drive-folder-banner { flex-direction: column; align-items: flex-start; }
+            .wp-portfolio-grid { grid-template-columns: 1fr; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .home-highlights { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-text">Kamran Ali</span>
+                    <div class="logo-dot"></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#resume" class="nav-link">Resume</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                    <div class="menu-bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <canvas id="particleCanvas"></canvas>
+        <div class="container">
+            <div class="home-content">
+                <!-- Left: Text -->
+                <div class="home-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Available for Freelance &amp; Full-Time</span>
+                    </div>
+                    <div class="typing-container">
+                        <h1 class="typing-text">Kamran Ali</h1>
+                    </div>
+                    <h2 class="hero-subtitle">AI Engineer &amp; Machine Learning Engineer</h2>
+                    <div class="hero-role-wrapper">
+                        <span class="hero-role-static">I build </span>
+                        <span class="hero-role-cycle" id="roleCycle">AI Systems</span>
+                    </div>
+                    <p class="hero-desc">Turning cutting-edge research into production-ready AI. Specialized in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, <strong>Agentic AI</strong>, and <strong>Computer Vision</strong>. Also building full-stack web applications with <strong>Node.js</strong>, <strong>Next.js</strong> &amp; <strong>NestJS</strong> — delivered for real businesses.</p>
+                    <div class="hero-stats">
+                        <div class="stat-pill">
+                            <span class="stat-num">1+</span>
+                            <span class="stat-label">Yr Experience</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-pill">
+                            <span class="stat-num">20+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-pill">
+                            <span class="stat-num">5+</span>
+                            <span class="stat-label">Domains</span>
+                        </div>
+                    </div>
+                    <div class="home-btns">
+                        <a href="#portfolio" class="btn primary nav-link">
+                            <i class="fas fa-rocket"></i>
+                            <span>View My Work</span>
+                            <div class="btn-hover-effect"></div>
+                        </a>
+                        <a href="resume.pdf" class="btn secondary" download="Kamran_Ali_Resume.pdf">
+                            <i class="fas fa-download"></i>
+                            <span>Download CV</span>
+                            <div class="btn-hover-effect"></div>
+                        </a>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/KamranAli786320" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:kamranali0844@gmail.com" class="hero-social-link" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Image + floating cards -->
+                <div class="home-image">
+                    <div class="hero-image-wrap">
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
+                        <div class="image-container">
+                            <img src="./images/cover-bg .jpeg" alt="Kamran Ali" class="profile-image">
+                            <div class="image-glow"></div>
+                        </div>
+                        <div class="float-badge float-badge--tl"><i class="fas fa-brain"></i><span>LLMs</span></div>
+                        <div class="float-badge float-badge--tr"><i class="fas fa-eye"></i><span>CV</span></div>
+                        <div class="float-badge float-badge--bl"><i class="fas fa-robot"></i><span>Agents</span></div>
+                        <div class="float-badge float-badge--br"><i class="fas fa-database"></i><span>RAG</span></div>
+                        <div class="hero-status-card">
+                            <div class="status-pulse"></div>
+                            <div class="status-text">
+                                <span class="status-title">Currently Working On</span>
+                                <span class="status-val">Agentic AI Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights -->
+            <div class="home-highlights">
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fas fa-brain"></i></div>
+                    <div class="hcard-body">
+                        <h4>AI / ML Engineer</h4>
+                        <p>LLMs, RAG systems, Agentic AI, Computer Vision &amp; predictive ML models — deployed in production.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="hcard-icon"><i class="fab fa-node-js"></i></div>
+                    <div class="hcard-body">
+                        <h4>Backend &amp; Full-Stack</h4>
+                        <p>Node.js, NestJS, FastAPI, Next.js — scalable APIs and full-stack web applications from scratch.</p>
+                    </div>
+                </div>
+                <div class="highlight-card highlight-card--learning">
+                    <div class="hcard-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="hcard-body">
+                        <h4>Continuously Learning <span class="learning-badge">Active</span></h4>
+                        <p>Deep-diving into advanced Agentic AI, LLM optimization, and modern DevOps — always leveling up.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech strip -->
+            <div class="tech-strip">
+                <span class="tech-strip-label">Tech Stack</span>
+                <div class="tech-tags">
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span>🤗 HuggingFace</span>
+                    <span>⛓ LangChain</span>
+                    <span><i class="fas fa-server"></i> FastAPI</span>
+                    <span>🔷 Next.js</span>
+                    <span><i class="fab fa-node-js"></i> Node.js</span>
+                    <span>👁 OpenCV</span>
+                    <span>🧠 PyTorch</span>
+                    <span>📦 Docker</span>
+                    <span>🐦 NestJS</span>
+                    <span>🌐 WordPress</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hi There! I'm Kamran Ali</h3>
+                    <p>AI/ML Engineer with nearly 1.5 year of industry experience in developing and deploying intelligent systems using cutting-edge technologies including MediaPipe, and chatbot development. Proven expertise in building real-time video processing pipelines, hand/body detection systems, and LLM-integrated applications.</p>
+                    <p>Passionate about AI automation and continuously exploring innovations in NLP. I have hands-on experience with Generative AI, Natural Language Processing, LLM Fine Tuning, RAG Systems, Research Agents creation, ChatBot Development, and Human pose and hand sign tracking.</p>
+                    <p>Beyond AI, I build professional websites and e-commerce solutions using <strong style="color:var(--primary)">WordPress</strong> — from landing pages to fully custom WooCommerce stores. I combine my AI expertise with web development to deliver intelligent, modern digital products.</p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-user"></i></div>
+                            <div class="detail-content"><strong>Name:</strong><span>Kamran Ali</span></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="detail-content"><strong>Email:</strong><span><a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a></span></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-content"><strong>Location:</strong><span>Lahore, Pakistan</span></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="detail-content"><strong>Availability:</strong><span>Open to Opportunities</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-content">
+                <div class="education">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="education-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <span class="date">2020 - 2024</span>
+                        <p class="institution">Khawaja Fareed University Engineering Information Technology</p>
+                        <p>Successfully completed a 4-year Bachelor's degree in Computer Science with a focus on software development, data structures, algorithms, databases, Artificial Intelligence, Machine Learning, Deep Learning and data science techniques.</p>
+                    </div>
+                </div>
+
+                <div class="experience">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>AI/ML Engineer</h4>
+                        <span class="date">SEP 2024 - DEC 2025</span>
+                        <p class="company">Tammz Technologies, UK Based</p>
+                        <ul>
+                            <li>Developed RAG systems using LangChain.</li>
+                            <li>Managed data indexing with vector databases.</li>
+                            <li>Improved LLM accuracy via prompt and retrieval optimization.</li>
+                            <li>Optimized prompts in LLaMA models to enhance performance in Retrieval-Augmented Generation (RAG) systems.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Machine Learning Engineer Intern</h4>
+                        <span class="date">MAY 2024 - JULY 2024</span>
+                        <p class="company">MENTORSOL REMOTE - INDIA</p>
+                        <ul>
+                            <li>Developed predictive models and applied ML on complex datasets.</li>
+                            <li>Skilled in data preprocessing, feature engineering, and Python/TensorFlow.</li>
+                            <li>Passionate about delivering AI/ML solutions for real-world problems.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="timeline-dot"></div>
+                        <h4>Data Science Intern</h4>
+                        <span class="date">OCT 2023 - DEC 2023</span>
+                        <p class="company">NGS TECHNOLOGIES RAHIMYARKHAN</p>
+                        <ul>
+                            <li>Hands-on experience with ML projects (regression &amp; classification).</li>
+                            <li>Data preprocessing, model building, and evaluation in Python.</li>
+                            <li>Applied ML techniques to solve real-world problems.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PORTFOLIO SECTION ===== -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+
+            <!-- TABS -->
+            <div class="portfolio-tabs">
+                <button class="tab-btn active" data-tab="aiml">
+                    <i class="fas fa-brain" style="margin-right:6px"></i> AI &amp; ML Projects
+                </button>
+                <button class="tab-btn" data-tab="wordpress">
+                    <i class="fab fa-wordpress" style="margin-right:6px"></i> WordPress Projects
+                </button>
+            </div>
+
+            <!-- ===== AI/ML PANE ===== -->
+            <div class="portfolio-pane active" id="pane-aiml">
+
+                <!-- AIML Drive Folder Banner -->
+                <div class="drive-folder-banner aiml-drive-banner">
+                    <div class="dfb-text">
+                        <div class="dfb-icon"><i class="fab fa-google-drive"></i></div>
+                        <div class="dfb-info">
+                            <h4>🎬 AI &amp; ML Project Demo Videos</h4>
+                            <p>Watch full demo videos of all AI/ML projects in action — click to open Google Drive folder</p>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link"
+                       target="_blank" rel="noopener noreferrer" class="drive-folder-link">
+                        <i class="fab fa-google-drive"></i> View All Videos
+                    </a>
+                </div>
+
+                <div class="portfolio-grid">
+
+                    <!-- 1. Private AI Story Engine -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/story_bible.jpg" alt="AI Story Writing Engine">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/ai-story-bible" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Private AI Story Engine</h3>
+                            <p>Local AI assistant with intelligent context management and automated Story Bible generation.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Ollama</span>
+                                <span class="tag">FastAPI</span>
+                                <span class="tag">Next.js</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 2. JARVIS -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/jarvis_assistant.jpg" alt="JARVIS Assistant">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/jarvis-System" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Voice-Controlled JARVIS</h3>
+                            <p>Voice-activated AI assistant for system automation, web tasks, and app control using Ollama.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Voice AI</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 3. Marketing Research Agent -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/RA.jpg" alt="Marketing Research Assistant">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/Marketing-Research-Agent" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Marketing Research Agent</h3>
+                            <p>RAG-based agent that provides real-time market updates and strategic insights.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">RAG</span>
+                                <span class="tag">Agentic AI</span>
+                                <span class="tag">LLM</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 4. Heart Disease -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/heart_disease.jpg" alt="Heart Disease Prediction">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/Heart-Disease-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Heart Disease Prediction</h3>
+                            <p>Advanced classification model to identify cardiovascular risk factors using patient data.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Scikit-Learn</span>
+                                <span class="tag">Healthcare</span>
+                                <span class="tag">ML</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Phishing Detection -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/phishing_detection.jpg" alt="Phishing Detection">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/Phinshing-Detection-By-passiny/tree/main" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Phishing Detection System</h3>
+                            <p>Machine Learning model focused on cybersecurity to identify and flag malicious URLs.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Cybersecurity</span>
+                                <span class="tag">ML</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 6. E-Commerce Analytics -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/cosmatic_analysis.jpg" alt="Cosmetic Analysis">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320/Eccomerce-Cosmetics-Prediction.git" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>E-Commerce Analytics</h3>
+                            <p>Predictive analysis and consumer behavior modeling for the cosmetics industry.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">Data Analytics</span>
+                                <span class="tag">E-commerce</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 7. AI Document Chatbot (was commented) -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/story_bible.jpg" alt="AI Document Chatbot">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>AI Document Chatbot</h3>
+                            <p>Intelligent chatbot that reads and answers questions from PDFs and documents using RAG + LLM integration.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">RAG</span>
+                                <span class="tag">LangChain</span>
+                                <span class="tag">FastAPI</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 8. Hand Sign Detection (was commented) -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/phishing_detection.jpg" alt="Hand Sign Detection">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Hand Sign Detection System</h3>
+                            <p>Real-time hand gesture and sign language detection using MediaPipe and Computer Vision for accessibility applications.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">MediaPipe</span>
+                                <span class="tag">OpenCV</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 9. Human Pose Estimation (was commented) -->
+                    <div class="portfolio-item">
+                        <div class="portfolio-img">
+                            <img src="images/RA.jpg" alt="Human Pose Estimation">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-links">
+                                    <a href="https://github.com/KamranAli786320" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" class="portfolio-link" target="_blank" rel="noopener noreferrer" title="Watch Demo Video" style="background:rgba(0,217,255,0.15);border:1px solid var(--primary);color:var(--primary)">
+                                        <i class="fas fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h3>Human Pose Estimation</h3>
+                            <p>Real-time body tracking and pose estimation for fitness, healthcare, and motion analysis using deep learning.</p>
+                            <div class="portfolio-tags">
+                                <span class="tag">MediaPipe</span>
+                                <span class="tag">Deep Learning</span>
+                                <span class="tag">Computer Vision</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1Hg8cRn0y_58I_1125gt2vn97bGAXdzG2?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end pane-aiml -->
+
+            <!-- ===== WORDPRESS PANE ===== -->
+            <div class="portfolio-pane" id="pane-wordpress">
+
+                <!-- WordPress Drive Folder Banner -->
+                <div class="drive-folder-banner">
+                    <div class="dfb-text">
+                        <div class="dfb-icon"><i class="fab fa-google-drive"></i></div>
+                        <div class="dfb-info">
+                            <h4>🎬 WordPress Project Demo Videos</h4>
+                            <p>Watch full demo walkthroughs of all WordPress &amp; WooCommerce projects — click to open Google Drive folder</p>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link"
+                       target="_blank" rel="noopener noreferrer" class="drive-folder-link">
+                        <i class="fab fa-google-drive"></i> View All Videos
+                    </a>
+                </div>
+
+                <div class="wp-portfolio-grid">
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-store"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>E-Commerce WooCommerce Store</h3>
+                                <span>WordPress + WooCommerce</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Fully functional online store with custom product pages, payment gateway integration, inventory management, and a sleek responsive design tailored for conversions.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">WooCommerce</span>
+                                <span class="wp-tag">Payment Gateway</span>
+                                <span class="wp-tag">Responsive</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-user-tie"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>Business / Corporate Website</h3>
+                                <span>WordPress + Elementor</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Modern corporate website with custom branding, service pages, team sections, contact forms, and SEO optimization — designed to build trust and generate leads.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">Elementor</span>
+                                <span class="wp-tag">SEO</span>
+                                <span class="wp-tag">Lead Generation</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-blog"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>Blog / Content Platform</h3>
+                                <span>WordPress Custom Theme</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Clean, fast-loading blog platform with custom post types, category management, newsletter integration, and optimized reading experience for maximum engagement.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">Custom Theme</span>
+                                <span class="wp-tag">Newsletter</span>
+                                <span class="wp-tag">Performance</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-palette"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>Portfolio / Agency Website</h3>
+                                <span>WordPress + Custom CSS</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Creative agency portfolio with animated sections, project showcases, client testimonials, and a fully custom design that stands out from template-based websites.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">Custom Design</span>
+                                <span class="wp-tag">Animations</span>
+                                <span class="wp-tag">Portfolio</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>LMS / Course Website</h3>
+                                <span>WordPress + LearnDash</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Full-featured online learning platform with course management, student enrollment, progress tracking, quizzes, and certificate generation for e-learning businesses.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">LearnDash</span>
+                                <span class="wp-tag">LMS</span>
+                                <span class="wp-tag">E-Learning</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wp-portfolio-item">
+                        <div class="wp-item-header">
+                            <div class="wp-item-icon"><i class="fas fa-utensils"></i></div>
+                            <div class="wp-item-meta">
+                                <h3>Restaurant / Food Ordering</h3>
+                                <span>WordPress + WooCommerce</span>
+                            </div>
+                        </div>
+                        <div class="wp-item-body">
+                            <p>Restaurant website with online menu, food ordering system, table reservation, delivery integration, and a visually rich design to drive customer appetite.</p>
+                            <div class="wp-item-tags">
+                                <span class="wp-tag">Food Ordering</span>
+                                <span class="wp-tag">Reservations</span>
+                                <span class="wp-tag">WooCommerce</span>
+                            </div>
+                            <a href="https://drive.google.com/drive/folders/1WAPqqoTDlVHiDtrwPHEJ9cPFecaYNUSA?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-video-btn">
+                                <i class="fas fa-play-circle"></i> Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end pane-wordpress -->
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comments"></i></div>
+                    <h3>AI Chatbot Development</h3>
+                    <p>Custom conversational AI for seamless customer support and engagement, using state-of-the-art NLP models.</p>
+                    <div class="service-features"><span>NLP</span><span>Multi-lingual</span><span>API Integration</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-database"></i></div>
+                    <h3>RAG Systems</h3>
+                    <p>Retrieval-Augmented Generation systems that connect LLMs to your private data for accurate, hallucination-free answers.</p>
+                    <div class="service-features"><span>Vector DBs</span><span>Document Analysis</span><span>Semantic Search</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Agentic AI Systems</h3>
+                    <p>Autonomous AI agents capable of planning, using tools, and executing complex workflows with minimal human intervention.</p>
+                    <div class="service-features"><span>Auto-GPT</span><span>Tool Use</span><span>Task Automation</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fab fa-wordpress"></i></div>
+                    <h3>WordPress Development</h3>
+                    <p>Professional WordPress websites and WooCommerce stores — from business sites to full e-commerce platforms with custom design.</p>
+                    <div class="service-features"><span>WooCommerce</span><span>Elementor</span><span>Custom Themes</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Computer Vision &amp; ML</h3>
+                    <p>Real-time object detection, facial recognition, and predictive modeling for industrial and retail automation.</p>
+                    <div class="service-features"><span>YOLO / OpenCV</span><span>ANPR</span><span>Predictive Modeling</span></div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Product-Based Systems</h3>
+                    <p>Scalable web applications and e-commerce platforms with integrated AI for personalized user experiences.</p>
+                    <div class="service-features"><span>Next.js / NestJS</span><span>Recommendation Engines</span><span>Admin Dashboards</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-content">
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Python</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Machine Learning / Deep Learning</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>LLM Fine-Tuning &amp; RAG</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>FastAPI</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>WordPress &amp; WooCommerce</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>NestJS</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Next.js (React)</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Agentic AI (LangChain / Autogen)</span><span>80%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>OpenCV / YOLO / MediaPipe</span><span>75%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Data Pre-Processing</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
+                    </div>
+                </div>
+                <div class="skills-visual">
+                    <div class="skill-radar">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <a href="tel:+923450521045">+92-3450521045</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:kamranali0844@gmail.com">kamranali0844@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <span>Lahore, Pakistan</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Me</h4>
+                        <div class="social-icons">
+                            <a href="https://www.linkedin.com/in/kamran-ali-5670b3256/" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/KamranAli786320" class="social-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary">
+                            <span>Send Message</span>
+                            <div class="btn-hover-effect"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Kamran Ali</span>
+                    <p>AI/ML Engineer &amp; WordPress Developer</p>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; 2025 Kamran Ali. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // ========= PORTFOLIO TABS =========
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.portfolio-pane');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            const target = document.getElementById('pane-' + btn.dataset.tab);
+            if (target) target.classList.add('active');
+        });
+    });
+
+    // ========= ROLE CYCLER =========
+    const roles = ['AI Systems','ML Models','RAG Pipelines','LLM Apps','Agentic AI','Smart Bots','Websites','Node.js APIs','Full-Stack Apps','WordPress Sites'];
+    let roleIdx = 0;
+    const roleEl = document.getElementById('roleCycle');
+    if (roleEl) {
+        setInterval(() => {
+            roleEl.style.opacity = '0';
+            roleEl.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                roleIdx = (roleIdx + 1) % roles.length;
+                roleEl.textContent = roles[roleIdx];
+                roleEl.style.opacity = '1';
+                roleEl.style.transform = 'translateY(0)';
+            }, 350);
+        }, 2500);
+    }
+
+    // ========= PARTICLE CANVAS =========
+    const canvas = document.getElementById('particleCanvas');
+    if (canvas) {
+        const ctx2 = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() {
+            const homeSection = document.getElementById('home');
+            canvas.width = homeSection.offsetWidth;
+            canvas.height = homeSection.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx2.beginPath();
+                ctx2.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx2.fillStyle = `rgba(0,217,255,${this.opacity})`;
+                ctx2.fill();
+            }
+        }
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i+1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < 100) {
+                        ctx2.beginPath();
+                        ctx2.strokeStyle = `rgba(0,217,255,${0.06*(1-dist/100)})`;
+                        ctx2.lineWidth = 0.5;
+                        ctx2.moveTo(particles[i].x, particles[i].y);
+                        ctx2.lineTo(particles[j].x, particles[j].y);
+                        ctx2.stroke();
+                    }
+                }
+            }
+        }
+        function animateParticles() {
+            ctx2.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            drawLines();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    }
+    </script>
+</body>
+</html>
